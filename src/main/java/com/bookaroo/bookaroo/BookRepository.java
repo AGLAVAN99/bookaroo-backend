@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookRepository extends ElasticsearchRepository<Book, String> {
 
-    // Custom query methods, if needed
+    // Custom query methods
     List<Book> findByTitle(String title);
 
     List<Book> findByAuthor(String author);

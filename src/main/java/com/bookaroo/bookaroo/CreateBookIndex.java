@@ -30,7 +30,7 @@ public class CreateBookIndex {
             XContentBuilder mapping = XContentFactory.jsonBuilder()
                     .startObject()
                     .startObject("properties")
-                    .startObject("id").field("type", "keyword").endObject()
+                    .startObject("id").field("type", "integer").endObject()
                     .startObject("title").field("type", "text").endObject()
                     .startObject("year").field("type", "integer").endObject()
                     .startObject("genres").field("type", "keyword").endObject()

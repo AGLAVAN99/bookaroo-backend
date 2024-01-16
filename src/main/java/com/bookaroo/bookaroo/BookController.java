@@ -36,20 +36,19 @@ public class BookController {
         return bookService.findBooksByGenre(genre);
     }
 
-    // Add more endpoints as needed
 
     @PostMapping
     public void addBook(@RequestBody Book book) {
-        // Implement logic to add a new book
+
     }
 
     @PutMapping("/{id}")
     public void updateBook(@PathVariable String id, @RequestBody Book book) {
-        // Implement logic to update an existing book
+
     }
 
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable String id) {
-        // Implement logic to delete a book by ID
+
     }
 }
