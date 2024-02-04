@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: Bookaroo
+  description: Bookaroo
+servers:
+  - url: https://localhost
+paths:
+  /api/books:
+    post:
+      summary: Create book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:  # not nullable, should contain all fields to save a book
+                book_title:
+                  type: string
+                book_author:
+                  type: string
+                book_year:
+                  type: integer
+                book_genre:
+                  type: string
+                book_description:
+                  type: string
+      responses:
+        '200':
+          description: Successfully created book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          description: Invalid created book
+  /api/books/delete/{bookId}:
+    delete:
+      summary: Delete books based on multiple parameters
+      description: Delete books that match the specified criteria.
+      parameters:
+        - name: book_title
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: book_author
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: book_year
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: book_genre
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: book_description
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully delete book action
+
+        '400':
+          description: Invalid delete book action
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/books?searchText:
+    get:
+      summary: Get a list of books based on parameters
+      parameters:
+        - name: book_title
+          in: query
+          description: The title of the book.
+          required: false
+          schema:
+            type: string
+        - name: book_year
+          in: query
+          description: The publication year of the book.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: book_genre
+          in: query
+          description: The genre of the book.
+          required: false
+          schema:
+            type: string
+        - name: book_description
+          in: query
+          description: The description of the book.
+          required: false
+          schema:
+            type: string
+        - name: book_author
+          in: query
+          description: The author of the book.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation. Returns a list of books.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '400':
+          description: Bad request. Invalid parameters.
+  /api/books/update/{bookId}:
+    put:
+      summary: Update book information
+      parameters:
+        - name: {book_title}
+          in: path
+          description: Title of the book to be updated
+          schema:
+            type: string
+        - name: {book_year}
+          in:  path
+          description: Year of publishment for the book to be updated
+          schema:
+            type: integer
+        - name: {book_genre}
+          in: path
+          description: Genre of the book to be updated
+          schema:
+            type: string
+        - name: {book_description}
+          in: path
+          description: Description of the book to be updated
+          schema:
+            type: string
+        - name: {book_author}
+          in: path
+          description: Author of the book to be updated
+          schema:
+            type: string
+
+      requestBody:
+        description: Updated book information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: Book updated successfully.
+        '400':
+          description: Bad request. Invalid input data.
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        bookId:
+          type: integer
+        book_title:
+          type: string
+        book_year:
+          type: integer
+          format: int32
+        book_genre:
+          type: string
+        book_description:
+          type: string
+        book_author:
+          type: string

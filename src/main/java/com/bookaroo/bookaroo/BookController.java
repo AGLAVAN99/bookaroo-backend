@@ -37,17 +37,17 @@ public class BookController {
     }
 
 
-    @PostMapping
+    @PostMapping("/create/{id}")
     public void addBook(@RequestBody Book book) {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public void updateBook(@PathVariable String id, @RequestBody Book book) {
 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteBook(@PathVariable String id) {
 
     }

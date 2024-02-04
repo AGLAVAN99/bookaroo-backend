@@ -1,0 +1,24 @@
+{
+  "mappings": {
+    "properties": {
+      "book_title": {
+        "type": "string"
+      },
+      "book_description": {
+        "type": "text"
+      },
+      "book_year": {
+        "type": "integer"
+      },
+      "book_genre": {
+        "type": "keyword"
+      },
+      "book_id": {
+        "type": "integer"
+      },
+      "book_author": {
+        "type": "string"
+      }
+    }
+  }
+}
